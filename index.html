@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+
+    </head>
+<body>
+
+    <hr/><hr/>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" >@@ Calculate :  Degree of Compaction @@</span>
+        </div>
+    </div>
+    <hr/><hr/>
+        
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" >1. Container Weight</span>
+        </div>
+        <input type="number" id="p" class="form-control" >
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" >2. Weight of Soil/ABC from hole + container</span>
+        </div>
+        <input type="number" id="q" class="form-control" >
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" >* Weight of Soil/ABC from hole </span>
+        </div>
+        <input type="number" id="r" class="form-control" disabled>
+    </div>
+
+    <hr/>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" >3. Container WeightWeight of standard sand before pouring</span>
+        </div>
+        <input type="number" id="a" class="form-control" >
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" >4. Weight of standard sand after pouring</span>
+        </div>
+        <input type="number" id="b" class="form-control" >
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" >* Weight of standard sand in hole + conde (+base plate )</span>
+        </div>
+        <input type="number" id="c" class="form-control" disabled>
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" >5. Weight of standard sand in cone + base plate</span>
+        </div>
+        <input type="number" id="d" class="form-control" >
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" >* Weight of standard sand in hole </span>
+        </div>
+        <input type="number" id="e" class="form-control" disabled>
+    </div>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" >6. Bulk density of standard sand</span>
+        </div>
+        <input type="number" id="f" class="form-control" >
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" >* Volume of hole </span>
+        </div>
+        <input type="number" id="g" class="form-control" disabled>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" >* Wet Density of Soil/ABC </span>
+        </div>
+        <input type="number" id="h" class="form-control" disabled>
+    </div>
+
+    <hr/>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" >7. Weight of Wet Soil/ABC + container</span>
+        </div>
+        <input type="number" id="i" class="form-control" >
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" >8. Weight of dry Soil/ABC + container</span>
+        </div>
+        <input type="number" id="j" class="form-control" >
+    </div>
+    <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" >9. Weight of container</span>
+            </div>
+            <input type="number" id="k" class="form-control" >
+        </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" >* Moisture content </span>
+        </div>
+        <input type="number" id="l" class="form-control" disabled>
+    </div>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" >* Dry density </span>
+        </div>
+        <input type="number" id="m" class="form-control" disabled>
+    </div>
+
+    <hr/>
+
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" >10. Maximum Dry Density</span>
+        </div>
+        <input type="number" id="n" class="form-control" >
+    </div>
+
+    <hr/>
+
+    <div class="row">
+        <button type="button" onclick="calculate()" class="btn btn-primary btn-lg btn-block"> Calculate </button>
+    </div>
+
+    <hr/>
+    <div class="input-group mb-3">
+        <div class="input-group-prepend">
+            <span class="input-group-text" >** Degree of Compaction : </span>
+        </div>
+        <input type="number" id="u" class="form-control" disabled>
+    </div>
+
+    <hr/>
+    <hr/>
+
+    <div class="row">
+        <div class="col">
+            <button type="button" onclick="enterTestValue()" class="btn btn-secondry btn-lg btn-block"> Enter Test Value </button>
+        </div>
+        <div class="col">
+            <button type="button" onclick="clearAll()" class="btn btn-secondry btn-lg btn-block"> Clean </button>
+        </div>
+    </div>
+
+    <script>
+    function calculate()
+        {
+            var p = document.getElementById('p').value;
+            var q = document.getElementById('q').value; 
+            document.getElementById('r').value = parseInt(q) - parseInt(p);
+
+            var a = document.getElementById('a').value;
+            var b = document.getElementById('b').value; 
+            document.getElementById('c').value = parseInt(a) - parseInt(b);
+
+            var c = document.getElementById('c').value; 
+            var d = document.getElementById('d').value; 
+            document.getElementById('e').value = parseInt(c) - parseInt(d);
+
+            var e = document.getElementById('e').value; 
+            var f = document.getElementById('f').value; 
+            document.getElementById('g').value = Math.round(parseInt(e) / parseFloat(f).toFixed(3));
+
+            var r = document.getElementById('r').value; 
+            var g = document.getElementById('g').value; 
+            document.getElementById('h').value = (Math.round(parseInt(r) / parseInt(g) * 100000) / 100000).toFixed(3);
+
+            var i = document.getElementById('i').value; 
+            var j = document.getElementById('j').value; 
+            var k = document.getElementById('k').value; 
+            document.getElementById('l').value = ((parseInt(i) - parseInt(j)) / (parseInt(j) - parseInt(k)) * 100).toFixed(1)
+
+            var h = document.getElementById('h').value; 
+            var l = document.getElementById('l').value;      
+            document.getElementById('m').value = (parseFloat(h) / (parseFloat(100) + parseFloat(l)) * 100 ).toFixed(3)
+
+            var m = document.getElementById('m').value; 
+            var n = document.getElementById('n').value;      
+            document.getElementById('u').value = (parseFloat(m) / parseFloat(n) * 100 ).toFixed(1)
+        }
+    
+        function enterTestValue(){
+            clearAll();
+            var kArray = ["p","q","a","b","d","f","i","j","k","n"];
+            var valueArray = [396,9301,28000,20504,2490,1.422,670,658,173,2.390];
+            for(var z = 0; z < kArray.length; z++){            
+                document.getElementById(kArray[z]).value = valueArray[z];
+            }
+        }
+        function clearAll(){            
+            var kArray = ["p","q","r","a","b","c","d","e","f","g","h","i","j","k","l","m","n","u"];
+            for(var z = 0; z < kArray.length; z++){                            
+                document.getElementById(kArray[z]).value = "";
+            }
+        }
+    </script>
+
+
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+    <!-- Custom Script  -->
+    <!-- <script src="./customscript.js"></script> -->
+
+</body>
+</html>
